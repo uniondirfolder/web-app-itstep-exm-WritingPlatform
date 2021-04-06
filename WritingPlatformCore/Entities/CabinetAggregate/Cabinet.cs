@@ -1,0 +1,36 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using WritingPlatformCore.Interfaces;
+
+namespace WritingPlatformCore.Entities.CabinetAggregate
+{
+    public class Cabinet: BaseEntity, IAggregateRoot
+    {
+        public string AuthorId { get; private set; }
+        private readonly List<CabinetItem> _items = new List<CabinetItem>();
+        public IReadOnlyCollection<CabinetItem> Items => _items.AsReadOnly();
+
+        public Cabinet(string authorId)
+        {
+            AuthorId = authorId;
+        }
+
+        public void AddItem(int catalogItemId, bool modify=false) 
+        {
+            if (!modify && !Items.Any(q => q.CatalogItemId == catalogItemId)) 
+            {
+                _items.Add(new CabinetItem(catalogItemId));
+                return;
+            }
+            var existingItem = Items.FirstOrDefault(q => q.CatalogItemId == catalogItemId);
+            existingItem.SetIsModify();
+        }
+
+        public void SetNewAuthorId(string authorId) 
+        {
+            AuthorId = authorId;
+        }
+    }
+}
