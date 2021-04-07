@@ -8,13 +8,13 @@ namespace WritingPlatformCore.Entities.CabinetAggregate
 {
     public class Cabinet: BaseEntity, IAggregateRoot
     {
-        public string AuthorId { get; private set; }
+        public string OwnerId { get; private set; }
         private readonly List<CabinetItem> _items = new List<CabinetItem>();
         public IReadOnlyCollection<CabinetItem> Items => _items.AsReadOnly();
 
-        public Cabinet(string authorId)
+        public Cabinet(string ownerId)
         {
-            AuthorId = authorId;
+            OwnerId = ownerId;
         }
 
         public void AddItem(int catalogItemId, bool modify=false) 

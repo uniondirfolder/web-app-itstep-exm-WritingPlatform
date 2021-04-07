@@ -6,10 +6,12 @@ using WritingPlatformCore.Interfaces;
 
 namespace WritingPlatformCore.Entities
 {
-    class CatalogItem: BaseEntity, IAggregateRoot
+    public class CatalogItem: BaseEntity, IAggregateRoot
     {
         public string Name { get; private set; }
         public string Description { get; private set; }
+        public uint PageCount { get; private set; }
+        public uint Popularity { get; private set; }
         public string PictureUri { get; private set; }
         public string FileTextUri { get; private set; }
         public string FileAudioUri { get; private set; }
@@ -26,8 +28,10 @@ namespace WritingPlatformCore.Entities
             string name,
             string description,
             string pictureUri,
-            string fileTextUri, 
-            string fileAudioUri)
+            string fileTextUri,
+            string fileAudioUri, 
+            uint pageCount, 
+            uint popularity)
         {
             CatalogGanreId = catalogGanreId;
             CatalogLanguageId = catalogLanguageId;
@@ -36,6 +40,8 @@ namespace WritingPlatformCore.Entities
             PictureUri = pictureUri;
             FileTextUri = fileTextUri;
             FileAudioUri = fileAudioUri;
+            PageCount = pageCount;
+            Popularity = popularity;
         }
 
         public void UpdateGanre(int catalogGanreId) 
@@ -74,6 +80,26 @@ namespace WritingPlatformCore.Entities
                 return;
             }
             FileTextUri = fileTextUri;
+        }
+        public void UpdateAudioBodyUri(string fileAudioUri)
+        {
+            if (string.IsNullOrEmpty(fileAudioUri))
+            {
+                FileTextUri = string.Empty;
+                return;
+            }
+            FileTextUri = fileAudioUri;
+        }
+
+        public void UpdatePopularity(uint popularity) 
+        {
+            Guard.Against.NegativeOrZero(popularity, nameof(popularity));
+            Popularity = popularity;
+        }
+        public void UpdatePageCount(uint pageCount)
+        {
+            Guard.Against.NegativeOrZero(pageCount, nameof(pageCount));
+            PageCount = pageCount;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace WritingPlatformCore.Entities.AuthorAggregate
+namespace WritingPlatformCore.Entities.OwnerAggregate
 {
     public class FixationMethod: BaseEntity
     {

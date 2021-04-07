@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using WritingPlatformCore.Interfaces;
 
-namespace WritingPlatformCore.Entities.AuthorAggregate
+namespace WritingPlatformCore.Entities.OwnerAggregate
 {
-    public class Author: BaseEntity, IAggregateRoot
+    public class Owner: BaseEntity, IAggregateRoot
     {
         public string IdentityGuid { get; private set; }
-        private List<FixationMethod> _fixationMethods = new List<FixationMethod>();
+        private List<FixationMethod> _fixationMethods = new();
         public IEnumerable<FixationMethod> FixationMethods => _fixationMethods.AsReadOnly();
 
-        private Author() { }
-        public Author(string identity) : this() 
+        private Owner() { }
+        public Owner(string identity) : this() 
         {
             Guard.Against.NullOrEmpty(identity, nameof(identity));
             IdentityGuid = identity;
