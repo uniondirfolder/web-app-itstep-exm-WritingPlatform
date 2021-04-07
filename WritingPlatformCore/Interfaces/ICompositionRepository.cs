@@ -1,6 +1,6 @@
 ﻿
 using System.Threading.Tasks;
-using WritingPlatformCore.CompositionAggregate.Entities;
+using WritingPlatformCore.Entities.CompositionAggregate;
 
 namespace WritingPlatformCore.Interfaces
 {

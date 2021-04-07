@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using WritingPlatformCore.Entities;
 using WritingPlatformCore.Interfaces;
 
-namespace WritingPlatformCore.CompositionAggregate.Entities
+namespace WritingPlatformCore.Entities.CompositionAggregate
 {
     public class Composition:BaseEntity, IAggregateRoot
     {
@@ -13,28 +13,28 @@ namespace WritingPlatformCore.CompositionAggregate.Entities
         {
 
         }
-        public Composition(string ownerId, List<CatalogItem> items)
+        public Composition(string ownerId, List<CompositionItem> items)
         {
             Guard.Against.NullOrEmpty(ownerId, nameof(ownerId));
             Guard.Against.Null(items, nameof(items));
 
             OwnerId = ownerId;
-            _catalogItems = items;
+            _compositionItem = items;
         }
         public string OwnerId { get; private set; }
 
         public DateTimeOffset DatePublished { get; private set; } = DateTimeOffset.Now;
 
-        private readonly List<CatalogItem> _catalogItems = new();
+        private readonly List<CompositionItem> _compositionItem = new();
 
-        public IReadOnlyCollection<CatalogItem> CatalogItems => _catalogItems.AsReadOnly();
+        public IReadOnlyCollection<CompositionItem> CompositionItems => _compositionItem.AsReadOnly();
 
         public uint TotalPages() 
         {
             var total=0u;
-            foreach (var item in _catalogItems)
+            foreach (var item in _compositionItem)
             {
-                total += item.PageCount;
+                total += item.ItemCompleted.PageCount;
             }
             return total;
         }
@@ -42,9 +42,9 @@ namespace WritingPlatformCore.CompositionAggregate.Entities
         public uint TotalPopularity()
         {
             var total = 0u;
-            foreach (var item in _catalogItems)
+            foreach (var item in _compositionItem)
             {
-                total += item.Popularity;
+                total += item.ItemCompleted.Popularity;
             }
             return total;
         }
@@ -52,7 +52,7 @@ namespace WritingPlatformCore.CompositionAggregate.Entities
         public int TotalPublication()
         {
             int i = 0;
-            while (i<_catalogItems.Count)
+            while (i< _compositionItem.Count)
             {
                 i++;
             }

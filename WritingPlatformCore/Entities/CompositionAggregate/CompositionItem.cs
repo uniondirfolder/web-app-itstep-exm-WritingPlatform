@@ -9,7 +9,7 @@ namespace WritingPlatformCore.Entities.CompositionAggregate
 {
     public class CompositionItem: BaseEntity
     {
-        public CatalogItemCompleted  CatalogItemCompleted { get; private set; }
+        public CatalogItemCompleted  ItemCompleted { get; private set; }
         public int NowReading { get; private set; }
         private CompositionItem()
         {
@@ -17,7 +17,7 @@ namespace WritingPlatformCore.Entities.CompositionAggregate
         }
         public CompositionItem(CatalogItemCompleted catalogItemCompleted = null, int nowReading = 0)
         {
-            CatalogItemCompleted = catalogItemCompleted;
+            ItemCompleted = catalogItemCompleted;
             NowReading = nowReading;
         }
     }
