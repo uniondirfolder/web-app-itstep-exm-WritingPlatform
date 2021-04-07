@@ -28,9 +28,9 @@ namespace WritingPlatformCore.Entities.CabinetAggregate
             existingItem.SetIsModify();
         }
 
-        public void SetNewAuthorId(string authorId) 
+        public void SetNewOwnerId(string ownerId) 
         {
-            AuthorId = authorId;
+            OwnerId = ownerId;
         }
     }
 }
