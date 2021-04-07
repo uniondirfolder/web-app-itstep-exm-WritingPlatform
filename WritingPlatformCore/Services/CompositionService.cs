@@ -1,10 +1,12 @@
 ﻿
 
+using Ardalis.GuardClauses;
 using System.Threading.Tasks;
 using WritingPlatformCore.Entities;
 using WritingPlatformCore.Entities.CabinetAggregate;
 using WritingPlatformCore.Entities.CompositionAggregate;
 using WritingPlatformCore.Interfaces;
+using WritingPlatformCore.Specifications;
 using WritingPlatformCore.ValueObjects;
 
 
@@ -26,7 +28,10 @@ namespace WritingPlatformCore.Services
 
         public async Task CreateCompositionAsync(int cabinetId, RecommendGiveAdvice distanationAddress) 
         {
+            var cabSpec = new CabinetWithItemsSpecification(cabinetId);
+            var cabinet = await _cabinetRepository.FirstOrDefaultAsync(cabSpec);
 
+            
         }
 
     }
