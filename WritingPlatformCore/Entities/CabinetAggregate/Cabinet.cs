@@ -32,5 +32,10 @@ namespace WritingPlatformCore.Entities.CabinetAggregate
         {
             OwnerId = ownerId;
         }
+
+        public void RemoveEmptyItems()
+        {
+            _items.RemoveAll(i => i.DateTimeCreate == i.DateTimeModify);
+        }
     }
 }

@@ -13,7 +13,8 @@ namespace WritingPlatformCore.Entities.CabinetAggregate
         {
             CatalogItemId = catalogItemId;
             DateTimeCreate = DateTime.UtcNow;
-            SetIsModify();
+            DateTimeModify = DateTimeCreate;
+
         }
 
         public void SetIsModify() 

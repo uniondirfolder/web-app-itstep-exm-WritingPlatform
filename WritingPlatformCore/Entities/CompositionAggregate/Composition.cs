@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using WritingPlatformCore.Entities;
 using WritingPlatformCore.Interfaces;
+using WritingPlatformCore.ValueObjects;
 
 namespace WritingPlatformCore.Entities.CompositionAggregate
 {
@@ -13,19 +14,22 @@ namespace WritingPlatformCore.Entities.CompositionAggregate
         {
 
         }
-        public Composition(string ownerId, List<CompositionItem> items)
+        public Composition(string ownerId, List<CompositionItem> items, RecommendGiveAdvice address)
         {
             Guard.Against.NullOrEmpty(ownerId, nameof(ownerId));
             Guard.Against.Null(items, nameof(items));
 
             OwnerId = ownerId;
             _compositionItem = items;
+            Address = address;
         }
         public string OwnerId { get; private set; }
 
         public DateTimeOffset DatePublished { get; private set; } = DateTimeOffset.Now;
 
         private readonly List<CompositionItem> _compositionItem = new();
+
+        public RecommendGiveAdvice Address { get; private set; }
 
         public IReadOnlyCollection<CompositionItem> CompositionItems => _compositionItem.AsReadOnly();
 

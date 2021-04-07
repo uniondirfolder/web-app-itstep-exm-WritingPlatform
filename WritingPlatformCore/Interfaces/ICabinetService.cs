@@ -10,7 +10,7 @@ namespace WritingPlatformCore.Interfaces
     {
         Task TransferCabinetAsync(string anonymousId, string ownerName);
         Task AddItemToCabinet(int cabinetId, int catalogItemId);
-        Task SetDateTimeModify(int cabinetId);
+        Task SetDateTimeModify(int cabinetId, Dictionary<string, bool> composition);
         Task DeleteCabinetAsync(int cabinetId);
     }
 }
