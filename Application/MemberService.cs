@@ -25,11 +25,8 @@ namespace Application
             if (null == member) throw new EntityNotFoundException();
             
             var dto = _mapper.Map<MemberDto>(member);
-            foreach (var item in member.Stories)
-            {
-                dto.Rating += item.Rating.CurrentValue;
-            }
-            dto.Rating /= member.Stories.Count;
+
+            dto.Rating = member.GetRating();
 
             return dto;
         }
