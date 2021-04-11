@@ -8,6 +8,8 @@ namespace Application
         public MapperProfile()
         {
             CreateMap<Member, MemberDto>();
+            CreateMap<CreateMemberDto, Member>();
+            CreateMap<MemberStoryDto, MemberStory>();
         }
     }
 }

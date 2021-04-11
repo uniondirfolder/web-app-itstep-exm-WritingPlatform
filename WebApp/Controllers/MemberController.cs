@@ -22,5 +22,12 @@ namespace WebApp.Controllers
             var result = await _memberService.GetByIdAsync(id);
             return result;
         }
+
+        [HttpPost]
+        public async Task<int>Create([FromBody] CreateMemberDto dto) 
+        {
+            var id = await _memberService.CreateMemberAsync(dto);
+            return id;
+        }
     }
 }

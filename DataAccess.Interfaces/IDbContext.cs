@@ -15,6 +15,6 @@ namespace DataAccess.Interfaces
         DbSet<StoryGenre> StoryGenres { get; }
         DbSet<StoryRating> StoryRatings { get; }
 
-        Task<int> SaveChangesAsync(CancellationToken token);
+        Task<int> SaveChangesAsync(CancellationToken token = default);
     }
 }

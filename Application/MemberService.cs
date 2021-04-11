@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataAccess;
 using DataAccess.Interfaces;
+using Domain.Entities;
 using DomainServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -18,6 +19,15 @@ namespace Application
             _mapper = mapper;
             _memberAnemicService = memberAnemicService;
         }
+
+        public async Task<int> CreateMemberAsync(CreateMemberDto dto)
+        {
+            var member = _mapper.Map<Member>(dto);
+            _dbContext.Members.Add(member);
+            await _dbContext.SaveChangesAsync();
+            return member.Id;
+        }
+
         public async Task<MemberDto> GetByIdAsync(int id)
         {
             var member = await _dbContext.Members
