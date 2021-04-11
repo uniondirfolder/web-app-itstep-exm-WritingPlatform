@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WritingPlatformCore", "Writ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CleanArch", "CleanArch", "{F563F84B-5845-4C80-B41B-4941CA550908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F1E7FD03-AF03-476E-BCB8-B9F3B27C0D9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{F1E7FD03-AF03-476E-BCB8-B9F3B27C0D9C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ignore", "Ignore", "{D9DDA173-68E4-49AC-84D3-638268E991A0}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,13 +20,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ignore", "Ignore", "{D9DDA1
 		Domain\Entities\Base\BaseSubject.cs = Domain\Entities\Base\BaseSubject.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{3D9F48C3-C307-40E4-B40B-EF7DC7325F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{3D9F48C3-C307-40E4-B40B-EF7DC7325F49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{2FA4EA51-F543-4F7D-92C2-B335F87455E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{2FA4EA51-F543-4F7D-92C2-B335F87455E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{7CDD8137-90D6-4EF2-AA19-9970CB6E8583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{7CDD8137-90D6-4EF2-AA19-9970CB6E8583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{842AAE59-DAFC-4380-A348-1364C409AC7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{842AAE59-DAFC-4380-A348-1364C409AC7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainServices.Implementation", "DomainServices.Implementation\DomainServices.Implementation.csproj", "{81775F31-7E25-4796-BD21-94C69E66D940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainServices.Interfaces", "DomainServices.Interfaces\DomainServices.Interfaces.csproj", "{948AC28E-B54E-4D8F-8567-3058D36FDA5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +62,14 @@ Global
 		{842AAE59-DAFC-4380-A348-1364C409AC7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{842AAE59-DAFC-4380-A348-1364C409AC7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{842AAE59-DAFC-4380-A348-1364C409AC7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81775F31-7E25-4796-BD21-94C69E66D940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81775F31-7E25-4796-BD21-94C69E66D940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81775F31-7E25-4796-BD21-94C69E66D940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81775F31-7E25-4796-BD21-94C69E66D940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{948AC28E-B54E-4D8F-8567-3058D36FDA5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{948AC28E-B54E-4D8F-8567-3058D36FDA5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{948AC28E-B54E-4D8F-8567-3058D36FDA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{948AC28E-B54E-4D8F-8567-3058D36FDA5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +81,8 @@ Global
 		{2FA4EA51-F543-4F7D-92C2-B335F87455E9} = {F563F84B-5845-4C80-B41B-4941CA550908}
 		{7CDD8137-90D6-4EF2-AA19-9970CB6E8583} = {F563F84B-5845-4C80-B41B-4941CA550908}
 		{842AAE59-DAFC-4380-A348-1364C409AC7E} = {F563F84B-5845-4C80-B41B-4941CA550908}
+		{81775F31-7E25-4796-BD21-94C69E66D940} = {F563F84B-5845-4C80-B41B-4941CA550908}
+		{948AC28E-B54E-4D8F-8567-3058D36FDA5D} = {F563F84B-5845-4C80-B41B-4941CA550908}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B181EB8F-4E25-495E-9811-E59B79B90CF4}
