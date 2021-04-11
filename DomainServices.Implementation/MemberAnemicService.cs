@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Delivery.Interfaces;
+using Domain.Entities;
 using DomainServices.Interfaces;
 
 
@@ -6,6 +7,13 @@ namespace DomainServices.Implementation
 {
     public class MemberAnemicService : IMemberAnemicService
     {
+        private readonly IDeliveryNService _deliveryNService;
+
+        public MemberAnemicService(IDeliveryNService deliveryNService)
+        {
+            _deliveryNService = deliveryNService;
+        }
+
         public decimal GetRating(Member member)
         {
             decimal result = 0.0m;
@@ -17,7 +25,14 @@ namespace DomainServices.Implementation
             {
                 result += item.Rating.CurrentValue;
             }
-            return result /= member.Stories.Count;
+
+            var mdl = result /= member.Stories.Count;
+
+            if (_deliveryNService.SomethingGood(mdl.ToString()) == "Bad") mdl = 0;//🎃
+
+            return mdl;
+
+            
         }
     }
 }

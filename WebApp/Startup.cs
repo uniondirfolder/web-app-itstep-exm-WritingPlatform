@@ -3,6 +3,8 @@ using ApplicationServices.Implementation;
 using ApplicationServices.Interfaces;
 using DataAccess;
 using DataAccess.Interfaces;
+using Delivery.CompanyN;
+using Delivery.Interfaces;
 using DomainServices.Implementation;
 using DomainServices.Interfaces;
 using Email.Implemintation;
@@ -42,6 +44,7 @@ namespace WebApp
             services.AddScoped<IEmailService, EmailService>();
             services.AddDbContext<IDbContext, AppDbContext>(builder =>
                  builder.UseSqlServer(Configuration.GetConnectionString("MsSql")));
+            services.AddScoped<IDeliveryNService, DeliveryNService>();
 
             //Application
             //services.AddScoped<IMemberService, MemberService>();//before
