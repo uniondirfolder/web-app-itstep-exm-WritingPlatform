@@ -3,6 +3,8 @@ using DataAccess;
 using DataAccess.Interfaces;
 using DomainServices.Implementation;
 using DomainServices.Interfaces;
+using Email.Implemintation;
+using Email.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApp.Interfaces;
+using WebApp.Services;
 
 namespace WebApp
 {
@@ -24,13 +28,22 @@ namespace WebApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            
 
-            services.AddScoped<IMemberService, MemberService>();
+            //Domain            
             services.AddScoped<IMemberAnemicService, MemberAnemicService>();
 
-            services.AddDbContext<IDbContext,AppDbContext>(builder =>
-                builder.UseSqlServer(Configuration.GetConnectionString("MsSql")));
+            //Infrastructure
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddDbContext<IDbContext, AppDbContext>(builder =>
+                 builder.UseSqlServer(Configuration.GetConnectionString("MsSql")));
+
+            //Application
+            services.AddScoped<IMemberService, MemberService>();
+
+            //Frameworks
+            services.AddControllers();
             services.AddAutoMapper(typeof(MapperProfile));
         }
 
