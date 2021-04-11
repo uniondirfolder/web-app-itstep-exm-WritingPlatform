@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ignore", "Ignore", "{D9DDA1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{3D9F48C3-C307-40E4-B40B-EF7DC7325F49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{2FA4EA51-F543-4F7D-92C2-B335F87455E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCases", "Application\UseCases.csproj", "{2FA4EA51-F543-4F7D-92C2-B335F87455E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{7CDD8137-90D6-4EF2-AA19-9970CB6E8583}"
 EndProject

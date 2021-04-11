@@ -5,6 +5,7 @@ using DomainServices.Implementation;
 using DomainServices.Interfaces;
 using Email.Implemintation;
 using Email.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UseCases.Member.Commands;
 using WebApp.Interfaces;
 using WebApp.Services;
 
@@ -40,7 +42,8 @@ namespace WebApp
                  builder.UseSqlServer(Configuration.GetConnectionString("MsSql")));
 
             //Application
-            services.AddScoped<IMemberService, MemberService>();
+            //services.AddScoped<IMemberService, MemberService>();//before
+            services.AddMediatR(typeof(CreateMemberCommand));
 
             //Frameworks
             services.AddControllers();
