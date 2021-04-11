@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 using DomainServices.Interfaces;
-using System;
+
 
 namespace DomainServices.Implementation
 {
@@ -8,7 +8,16 @@ namespace DomainServices.Implementation
     {
         public decimal GetRating(Member member)
         {
-            throw new NotImplementedException();
+            decimal result = 0.0m;
+            if (null == member) return result;
+            if (null == member.Stories) return result;
+            if (0 == member.Stories.Count) return result;
+
+            foreach (var item in member.Stories)
+            {
+                result += item.Rating.CurrentValue;
+            }
+            return result /= member.Stories.Count;
         }
     }
 }

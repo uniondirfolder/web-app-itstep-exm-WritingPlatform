@@ -10,12 +10,12 @@ namespace Application
     {
         private readonly AppDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IMemberAnemicService _memberRichService;
-        public MemberService(AppDbContext dbContext, IMapper mapper, IMemberAnemicService memberRichService)
+        private readonly IMemberAnemicService _memberAnemicService;
+        public MemberService(AppDbContext dbContext, IMapper mapper, IMemberAnemicService memberAnemicService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _memberRichService = memberRichService;
+            _memberAnemicService = memberAnemicService;
         }
         public async Task<MemberDto> GetByIdAsync(int id)
         {
@@ -29,8 +29,8 @@ namespace Application
             
             var dto = _mapper.Map<MemberDto>(member);
 
-            //dto.Rating = member.GetRating();
-            dto.Rating = _memberRichService.GetRating(member);
+            //dto.Rating = member.GetRating(); //Rich-model
+            dto.Rating = _memberAnemicService.GetRating(member);//Anemic-model
 
             return dto;
         }
