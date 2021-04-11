@@ -9,6 +9,7 @@ using DomainServices.Implementation;
 using DomainServices.Interfaces;
 using Email.Implemintation;
 using Email.Interfaces;
+using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Mobile.UseCases.Member.BackgroundJobs;
 using UseCases.Member.Commands;
 using WebApp.Interfaces;
 using WebApp.Services;
@@ -45,6 +47,8 @@ namespace WebApp
             services.AddDbContext<IDbContext, AppDbContext>(builder =>
                  builder.UseSqlServer(Configuration.GetConnectionString("MsSql")));
             services.AddScoped<IDeliveryNService, DeliveryNService>();
+            services.AddScoped<IBackgroundJobService, BackgroundJobService>();
+
 
             //Application
             //services.AddScoped<IMemberService, MemberService>();//before
@@ -54,6 +58,8 @@ namespace WebApp
             services.AddControllers();
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddMediatR(typeof(CreateMemberCommand));
+            services.AddHangfire(cfg => cfg.UseSqlServerStorage(Configuration.GetConnectionString("MsSql")));
+            services.AddHangfireServer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +85,9 @@ namespace WebApp
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+
+            app.UseHangfireServer();
+            RecurringJob.AddOrUpdate<UpdateDeliveryStatusJob>("UpdateDeliveryStatusJob", (job) => job.ExecuteAsync(), Cron.Daily);
         }
     }
 }
