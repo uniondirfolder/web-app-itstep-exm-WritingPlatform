@@ -1,4 +1,6 @@
 using Application;
+using ApplicationServices.Implementation;
+using ApplicationServices.Interfaces;
 using DataAccess;
 using DataAccess.Interfaces;
 using DomainServices.Implementation;
@@ -43,11 +45,12 @@ namespace WebApp
 
             //Application
             //services.AddScoped<IMemberService, MemberService>();//before
-            services.AddMediatR(typeof(CreateMemberCommand));
+            services.AddScoped<ISecurityService, SecurityService>();
 
             //Frameworks
             services.AddControllers();
             services.AddAutoMapper(typeof(MapperProfile));
+            services.AddMediatR(typeof(CreateMemberCommand));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

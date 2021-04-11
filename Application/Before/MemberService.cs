@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using DataAccess;
+﻿
+using AutoMapper;
 using DataAccess.Interfaces;
 using Domain.Entities;
 using DomainServices.Interfaces;
