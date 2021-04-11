@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess;
+using DomainServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
@@ -9,10 +10,12 @@ namespace Application
     {
         private readonly AppDbContext _dbContext;
         private readonly IMapper _mapper;
-        public MemberService(AppDbContext dbContext, IMapper mapper)
+        private readonly IMemberAnemicService _memberRichService;
+        public MemberService(AppDbContext dbContext, IMapper mapper, IMemberAnemicService memberRichService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _memberRichService = memberRichService;
         }
         public async Task<MemberDto> GetByIdAsync(int id)
         {
@@ -26,7 +29,8 @@ namespace Application
             
             var dto = _mapper.Map<MemberDto>(member);
 
-            dto.Rating = member.GetRating();
+            //dto.Rating = member.GetRating();
+            dto.Rating = _memberRichService.GetRating(member);
 
             return dto;
         }
