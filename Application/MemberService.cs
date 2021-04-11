@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess;
+using DataAccess.Interfaces;
 using DomainServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -8,10 +9,10 @@ namespace Application
 {
     public class MemberService : IMemberService
     {
-        private readonly AppDbContext _dbContext;
+        private readonly IDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IMemberAnemicService _memberAnemicService;
-        public MemberService(AppDbContext dbContext, IMapper mapper, IMemberAnemicService memberAnemicService)
+        public MemberService(IDbContext dbContext, IMapper mapper, IMemberAnemicService memberAnemicService)
         {
             _dbContext = dbContext;
             _mapper = mapper;

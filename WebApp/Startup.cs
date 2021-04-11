@@ -1,5 +1,6 @@
 using Application;
 using DataAccess;
+using DataAccess.Interfaces;
 using DomainServices.Implementation;
 using DomainServices.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +29,7 @@ namespace WebApp
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IMemberAnemicService, MemberAnemicService>();
 
-            services.AddDbContext<AppDbContext>(builder =>
+            services.AddDbContext<IDbContext,AppDbContext>(builder =>
                 builder.UseSqlServer(Configuration.GetConnectionString("MsSql")));
             services.AddAutoMapper(typeof(MapperProfile));
         }
