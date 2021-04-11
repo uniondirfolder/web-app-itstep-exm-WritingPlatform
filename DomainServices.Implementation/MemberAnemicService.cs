@@ -1,4 +1,4 @@
-﻿using Delivery.Interfaces;
+﻿//using Delivery.Interfaces;
 using Domain.Entities;
 using DomainServices.Interfaces;
 
@@ -7,14 +7,14 @@ namespace DomainServices.Implementation
 {
     public class MemberAnemicService : IMemberAnemicService
     {
-        private readonly IDeliveryNService _deliveryNService;
+        //private readonly IDeliveryNService _deliveryNService;
 
-        public MemberAnemicService(IDeliveryNService deliveryNService)
-        {
-            _deliveryNService = deliveryNService;
-        }
+        //public MemberAnemicService(IDeliveryNService deliveryNService)
+        //{
+        //    _deliveryNService = deliveryNService;
+        //}
 
-        public decimal GetRating(Member member)
+        public decimal GetRating(Member member, SomethingNDeliveryDelegate somethingNDeliveryDelegate)
         {
             decimal result = 0.0m;
             if (null == member) return result;
@@ -28,7 +28,8 @@ namespace DomainServices.Implementation
 
             var mdl = result /= member.Stories.Count;
 
-            if (_deliveryNService.SomethingGood(mdl.ToString()) == "Bad") mdl = 0;//🎃
+            //if (_deliveryNService.SomethingGood(mdl.ToString()) == "Bad") mdl = 0;//🎃
+            if (somethingNDeliveryDelegate(mdl.ToString()) == "Bad") mdl = 0;//🎃
 
             return mdl;
 

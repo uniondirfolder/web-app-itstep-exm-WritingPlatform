@@ -1,6 +1,7 @@
 ﻿using Application;
 using AutoMapper;
 using DataAccess.Interfaces;
+using Delivery.Interfaces;
 using DomainServices.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,13 @@ namespace UseCases.Member.Queries.GetById
         private readonly IMapper _mapper;
         private readonly IDbContext _dbContext;
         private readonly IMemberAnemicService _memberAnemicService;
-        public GetMemberByIdQueryHendler(IMapper mapper, IDbContext dbContext, IMemberAnemicService memberAnemicService)
+        private readonly IDeliveryNService _deliveryNService;
+        public GetMemberByIdQueryHendler(IMapper mapper, IDbContext dbContext, IMemberAnemicService memberAnemicService, IDeliveryNService deliveryNService)
         {
             _mapper = mapper;
             _dbContext = dbContext;
             _memberAnemicService = memberAnemicService;
+            _deliveryNService = deliveryNService;
         }
         public async Task<MemberDto> Handle(GetMemberByIdQuery request, CancellationToken cancellationToken)
         {
@@ -34,7 +37,7 @@ namespace UseCases.Member.Queries.GetById
             var dto = _mapper.Map<MemberDto>(member);
 
             //dto.Rating = member.GetRating(); //Rich-model
-            dto.Rating = _memberAnemicService.GetRating(member);//Anemic-model
+            dto.Rating = _memberAnemicService.GetRating(member, _deliveryNService.SomethingGood);//Anemic-model
 
             return dto;
         }

@@ -5,6 +5,6 @@ namespace DomainServices.Interfaces
 {
     public interface IMemberAnemicService
     {
-        decimal GetRating(Member member);
+        decimal GetRating(Member member, SomethingNDeliveryDelegate something);
     }
 }
